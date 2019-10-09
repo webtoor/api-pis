@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -12,7 +12,8 @@ use Laravel\Passport\HasApiTokens;
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use HasApiTokens, Authenticatable, Authorizable;
-    protected $table = 'USERS';
+
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -20,14 +21,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'USERNAME',
-        'PASSWORD',
-        'FIRSTNAME',
-        'MIDDLENAME',
-        'LASTNAME',
-        'EMAIL',
-        'DOB',
-        'SEX'
+        'username',
+        'password',
+        'firstname',
+        'middlename',
+        'lastname',
+        'email',
+        'dob',
+        'sex'
     ];
 
     /**
@@ -36,6 +37,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'PASSWORD',
+        'password',
     ];
+
+    public function findForPassport($username){
+        return $user = (new User)->where('email', $username)->orWhere('username', $username)->first();
+    }
+
+    public function role(){
+        return $this->hasOne('App\Models\User_role', 'user_id', 'id');
+    }
 }

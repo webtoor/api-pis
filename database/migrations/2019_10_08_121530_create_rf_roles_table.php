@@ -13,9 +13,9 @@ class CreateRfRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('RF_ROLES', function (Blueprint $table) {
-            $table->increments('ROLEID');
-            $table->string('ROLEDESC', 10);
+        Schema::create('rf_roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('roledesc', 15);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateRfRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('RF_ROLES');
+        Schema::dropIfExists('rf_roles');
     }
 }
