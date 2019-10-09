@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrganizationsTable extends Migration
+class CreateSuborganizationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateOrganizationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create('suborganizations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('organizationname', 100);
-            $table->date('dtjoined');
+            $table->integer('organization_id')->unsigned();
+            $table->dateTime('dtjoined')->useCurrent = true;
             $table->integer('active')->default('1');
         });
     }
@@ -28,6 +28,6 @@ class CreateOrganizationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizations');
+        Schema::dropIfExists('suborganizations');
     }
 }
