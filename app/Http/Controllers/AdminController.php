@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Package;
-
+use App\Models\User_suborganization;
 class AdminController extends Controller
 {
     public function showPackage($user_id){
-      return $user_id;   
+        try {
+            $userSubOrg = User_suborganization::where('user_id', $user_id)->first();
+            $result = Package::with('suborganization')->where('suborganization_id', $userSubOrg->suborganization_id)->get();
+            return response()->json([
+                'status' => "1",
+                'data' => $result,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => "0",
+                'error' => $e->getMessage()
+            ]);
+        }
+      
     }
     public function createPackage(Request $request){
 

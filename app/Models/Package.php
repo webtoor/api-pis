@@ -20,4 +20,8 @@ class Package extends Model
         'defaultprice',
         'active'
     ];
+
+    public function suborganization(){
+        return $this->belongsTo('App\Models\Suborganization');
+    }
 }
