@@ -18,8 +18,9 @@ $router->post('register', ['uses' => 'AuthController@register']);
 
 $router->post('login', ['uses' => 'AuthController@login']);
 
+
 $router->group(['prefix' => 'api/v1', 'middleware' => ['auth:api']], function () use ($router) {
-    $router->group(['prefix' => 'admin', 'middleware' => ['client']], function () use ($router) {
+    $router->group(['prefix' => 'admin', 'middleware' => ['admin']], function () use ($router) {
     $router->post('create_package', ['uses' => 'AdminController@createPackage']);
     });
 });
