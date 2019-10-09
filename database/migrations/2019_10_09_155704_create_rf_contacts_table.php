@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRfContactsTable extends Migration
+class CreateRfContacttypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRfContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rf_contacts', function (Blueprint $table) {
+        Schema::create('rf_contacttypes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description', 50);
         });
@@ -26,6 +26,6 @@ class CreateRfContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rf_contacts');
+        Schema::dropIfExists('rf_contacttypes');
     }
 }

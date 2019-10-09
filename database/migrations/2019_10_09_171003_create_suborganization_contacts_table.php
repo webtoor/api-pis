@@ -25,7 +25,7 @@ class CreateSuborganizationContactsTable extends Migration
 
             $table->foreign('suborganization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->foreign('pic')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('contacttype_id')->references('id')->on('rf_contacts')->onDelete('cascade');
+            $table->foreign('contacttype_id')->references('id')->on('rf_contacttypes')->onDelete('cascade');
         });
     }
 
