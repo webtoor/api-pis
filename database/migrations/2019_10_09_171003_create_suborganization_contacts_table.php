@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrganizationContactsTable extends Migration
+class CreateSuborganizationContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateOrganizationContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organization_contacts', function (Blueprint $table) {
+        Schema::create('suborganization_contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('organization_id')->unsigned();
+            $table->integer('suborganization_id')->unsigned();
             $table->integer('pic')->unsigned();
             $table->integer('contacttype_id')->unsigned();
             $table->string('contactvalue', 150);
             $table->date('dtstart');
+            $table->integer('active')->default('1');
 
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
+
+            $table->foreign('suborganization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->foreign('pic')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('contacttype_id')->references('id')->on('rf_contacts')->onDelete('cascade');
         });
@@ -34,6 +36,6 @@ class CreateOrganizationContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organization_contacts');
+        Schema::dropIfExists('suborganization_contacts');
     }
 }
