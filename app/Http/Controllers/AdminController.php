@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\User_suborganization;
+use Illuminate\Support\Facades\DB;
+
 class AdminController extends Controller
 {
     public function showPackage($user_id){
@@ -48,7 +50,7 @@ class AdminController extends Controller
             ]);
             return response()->json([
                 'status' => "1",
-                'data' => $result,
+                'message' => "success",
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -56,5 +58,23 @@ class AdminController extends Controller
                 'error' => $e->getMessage()
             ]);
         }
+    }
+
+    public function deletePackage($package_id){
+        try {
+            Package::where('package_id', $package_id)->delete();
+            // ALTER TABLE tablename AUTO INCREMENT = 1
+            DB::statement("ALTER TABLE packages AUTO_INCREMENT = 1");
+            return response()->json([
+                'status' => "1",
+                'message' => "success",
+            ]);
+        } catch(\Exception $e) {
+            return response()->json([
+                'status' => "0",
+                'error' => $e->getMessage()
+            ]);
+        }
+    
     }
 }
