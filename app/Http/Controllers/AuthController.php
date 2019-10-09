@@ -78,7 +78,7 @@ class AuthController extends Controller{
                     $json['role_id'] = $resultUser->role->role_id;
                     return $response->setContent(json_encode($json));
                 }else{
-                         // Client_Secret
+                         // !Client_Secret
                     return response()->json([
                         "status" => "0",
                         "error" => "invalid_credentials",
