@@ -65,6 +65,11 @@ $app->configure('auth');
 
  $app->routeMiddleware([
      'auth' => App\Http\Middleware\Authenticate::class,
+     'admin' => App\Http\Middleware\Admin::class,
+     'trainer' => App\Http\Middleware\Trainer::class,
+     'client' => App\Http\Middleware\Client::class,
+     'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class, 
+     'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class
  ]);
 
 /*
