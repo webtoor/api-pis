@@ -60,6 +60,31 @@ class AdminController extends Controller
         }
     }
 
+    public function updatePackage(Request $request, $package_id){
+       $data = $this->validate($request, [
+            'packagename' => 'string|regex:/^[\w- ]*$/',
+            'totalsession' => 'numeric',
+            'duration' => 'numeric',
+            'defaultprice' => 'numeric',
+            'dtstart' => 'date|date_format:Y-m-d',
+            'dtend' => 'date|date_format:Y-m-d',
+        ]);
+
+        try {
+            $check_package = Package::findOrFail($package_id);
+            $check_package->update($data);
+            return response()->json([
+                'status' => "1",
+                'message' => "success",
+            ]);
+        } catch(\Exception $e) {
+            return response()->json([
+                'status' => "0",
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
     public function deletePackage($package_id){
         try {
             Package::where('package_id', $package_id)->delete();
@@ -77,4 +102,5 @@ class AdminController extends Controller
         }
     
     }
+
 }
