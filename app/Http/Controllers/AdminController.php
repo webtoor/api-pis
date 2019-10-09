@@ -7,7 +7,9 @@ use App\Models\Package;
 
 class AdminController extends Controller
 {
-
+    public function showPackage($user_id){
+      return $user_id;   
+    }
     public function createPackage(Request $request){
 
         $data = $this->validate($request, [
@@ -41,6 +43,5 @@ class AdminController extends Controller
                 'error' => $e->getMessage()
             ]);
         }
-        
     }
 }

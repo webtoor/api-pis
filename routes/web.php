@@ -20,8 +20,10 @@ $router->post('login', ['uses' => 'AuthController@login']);
 
 
 $router->group(['prefix' => 'api/v1', 'middleware' => ['auth:api']], function () use ($router) {
+    
     $router->group(['prefix' => 'admin', 'middleware' => ['admin']], function () use ($router) {
-    $router->post('create_package', ['uses' => 'AdminController@createPackage']);
+        $router->get('show_package/{user_id}', ['uses' => 'AdminController@showPackage']);
+        $router->post('create_package', ['uses' => 'AdminController@createPackage']);
     });
 });
 
