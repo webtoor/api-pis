@@ -15,6 +15,7 @@ class CreateSuborganizationsTable extends Migration
     {
         Schema::create('suborganizations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('suborganizationname', 100);
             $table->integer('organization_id')->unsigned();
             $table->dateTime('dtjoined')->useCurrent = true;
             $table->integer('active')->default('1');
