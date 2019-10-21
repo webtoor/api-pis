@@ -12,7 +12,7 @@ return [
     'supportsCredentials' => true,
     'allowedOrigins' => ['*'],
     'allowedHeaders' => ['*'],
-    'allowedMethods' => ['GET', 'POST', 'OPTIONS', 'PUT'], // ex: ['GET', 'POST', 'PUT',  'DELETE']
+    'allowedMethods' => ['*'], // ex: ['GET', 'POST', 'PUT',  'DELETE']
     'exposedHeaders' => [],
     'maxAge' => 86400 ,
 ];
