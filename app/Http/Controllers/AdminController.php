@@ -73,6 +73,7 @@ class AdminController extends Controller
              'defaultprice' => 'numeric',
              'dtstart' => 'date|date_format:Y-m-d',
              'dtend' => 'date|date_format:Y-m-d',
+             'active' => 'required'
          ]);
  
          try {

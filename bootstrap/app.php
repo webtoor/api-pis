@@ -46,6 +46,8 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->configure('cors');
+
 $app->configure('auth');
 
 /*
@@ -62,6 +64,10 @@ $app->configure('auth');
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
+
+$app->middleware([
+    \Barryvdh\Cors\HandleCors::class,
+]);
 
  $app->routeMiddleware([
      'auth' => App\Http\Middleware\Authenticate::class,

@@ -38,7 +38,7 @@ class AuthController extends Controller{
         $login_types = $request->json('login_types');
         $password = $request->json('password');
 
-        $resultUser = User::where('email', $login_types)->orWhere('username', $login_types)->first();
+        return $resultUser = User::where('email', $login_types)->orWhere('username', $login_types)->first();
         if($resultUser) {
             if (Hash::check($password, $resultUser->password)) {
                 $user_role = $resultUser->role->role_id;
