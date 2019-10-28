@@ -35,6 +35,12 @@ $router->group(['prefix' => 'api/v1', 'middleware' => ['auth:api']], function ()
         $router->put('trainer/{trainer_id}', ['uses' => 'AdminController@updateTrainer']);
         $router->delete('trainer/{trainer_id}', ['uses' => 'AdminController@deleteTrainer']);
     });
+
+
+    $router->group(['prefix' => 'trainer', 'middleware' => ['trainer']], function () use ($router) {
+        $router->get('profile', ['uses' => 'TrainerController@showProfile']);
+        $router->put('profile/{trainer_id}', ['uses' => 'TrainerController@updateProfile']);
+    });
 });
 
 
