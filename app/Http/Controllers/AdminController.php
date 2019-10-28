@@ -263,4 +263,26 @@ class AdminController extends Controller
             ]);
         }
     }
+
+
+    public function showTotalTrainer($admin_id){
+        try {
+              $check = User_suborganization::where('user_id', $admin_id)->first();
+              $result = User_suborganization::with(['role' => function ($query) {
+                  $query->where('role_id', '2');
+              }])->where('suborganization_id', $check->suborganization_id)->get();
+              $results = $result->filter(function ($value) {
+                  return $value['role'] != null;
+              })->values();
+              return response()->json([
+                  'status' => "1",
+                  'data' => count($results)
+              ]);
+        } catch(\Exception $e) {
+          return response()->json([
+              'status' => "0",
+              'error' => $e->getMessage()
+          ]);
+        }
+  }
 }
