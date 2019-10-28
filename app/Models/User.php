@@ -48,4 +48,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasOne('App\Models\User_role', 'user_id', 'id');
     }
 
+    public function contact_mobile(){
+        return $this->hasOne('App\Models\User_contact')->where('contacttype_id', '2')->orderBy('id', 'desc');
+    }
+
 }
